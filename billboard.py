@@ -377,10 +377,16 @@ class ChartData:
                     raise BillboardParseException(message)
 
             if self.date:
-                peakPos = getMeta("peak", 4)
-                lastPos = getMeta("last", 3, ifNoValue=0)
-                weeks = getMeta("week", 5, ifNoValue=1)
-                isNew = True if weeks == 1 else False
+                if self.name == 'tiktok-billboard-top-50':
+                    peakPos = getMeta("peak", 3)
+                    lastPos = getMeta("last", 2, ifNoValue=0)
+                    weeks = getMeta("week", 4, ifNoValue=1)
+                    isNew = True if weeks == 1 else False
+                else:
+                    peakPos = getMeta("peak", 4)
+                    lastPos = getMeta("last", 3, ifNoValue=0)
+                    weeks = getMeta("week", 5, ifNoValue=1)
+                    isNew = True if weeks == 1 else False
             else:
                 peakPos = lastPos = weeks = None
                 isNew = False
